@@ -7,6 +7,8 @@ import org.bson.types.ObjectId;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.perfectmatch.common.interfaces.ByIdQueryable;
+import com.perfectmatch.common.model.NameableEntity;
 /**
  *
  * Represents an match between two samples
@@ -14,13 +16,13 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
  */
 
 
-public final class Match {
+public final class Match implements NameableEntity {
 
 
 	@JsonSerialize(using = ToStringSerializer.class)
     private ObjectId id;
-    private String name;
-    private String sampleFromRule;
+	private Object thisSample;
+    private Object thatSampleFromRule;
     private String rule;
   
 
@@ -28,11 +30,11 @@ public final class Match {
 		super();
 	}
 	
-	public Match(ObjectId id, String name, String sampleFromRule, String rule) {
+	public Match(ObjectId id, String thisSample, String thatSample, String rule) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.sampleFromRule = sampleFromRule;
+		this.thisSample = thisSample;
+		this.thatSampleFromRule = thisSample;
 		this.rule = rule;
 	}
 
@@ -44,22 +46,7 @@ public final class Match {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSampleFromRule() {
-		return sampleFromRule;
-	}
-
-	public void setSampleFromRule(String sampleFromRule) {
-		this.sampleFromRule = sampleFromRule;
-	}
-
+	
 	public String getRule() {
 		return rule;
 	}
@@ -68,6 +55,28 @@ public final class Match {
 		this.rule = rule;
 	}
 
+	public Object getThisSample() {
+		return thisSample;
+	}
+
+	public void setThisSample(Object thisSample) {
+		this.thisSample = thisSample;
+	}
+
+	public Object getThatSampleFromRule() {
+		return thatSampleFromRule;
+	}
+
+	public void setThatSampleFromRule(Object thatSampleFromRule) {
+		this.thatSampleFromRule = thatSampleFromRule;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	/*
      * (non-Javadoc)
      *
@@ -76,7 +85,7 @@ public final class Match {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, rule, name, sampleFromRule);
+        return Objects.hash(id, rule, thisSample, thatSampleFromRule);
     }
 
     /*
@@ -99,9 +108,12 @@ public final class Match {
         Match other = (Match) obj;
         return id == other.id && 
         		Objects.equals(rule, other.rule) && 
-        		Objects.equals(name, other.name) && 
-        		Objects.equals(sampleFromRule, other.sampleFromRule);
+        		Objects.equals(thisSample, other.thisSample) && 
+        		Objects.equals(thatSampleFromRule, other.thatSampleFromRule);
 
     }
+
+
+
 
 }

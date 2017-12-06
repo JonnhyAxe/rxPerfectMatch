@@ -26,6 +26,9 @@ public class MatchRepositoryTest {
 
 	@Autowired
 	private MatchRepository repo;
+	
+	@Autowired
+	private SampleRepository sampleRepo;
 
 	/**
 	 * Class level @DirtiesContext(classMode=ClassMode.BEFORE_EACH_TEST_METHOD)
@@ -35,6 +38,7 @@ public class MatchRepositoryTest {
 	@Before
 	public void cleanDB() {
 		repo.deleteAll().block();
+		sampleRepo.deleteAll().block();
 	}
 
 	@Test
@@ -52,6 +56,9 @@ public class MatchRepositoryTest {
 
         musicPleaseStop.setSamples(new HashSet<Sample>(Arrays.asList(samplePleaseStop)));
 
+		final Sample samplePleaseStopSaved = sampleRepo.save(samplePleaseStop).block();
+		
+		
         Music musicDef = new Music();
         musicDef.setArtist("Latmun");
         musicDef.setName("def (Original Mix)");
@@ -63,10 +70,12 @@ public class MatchRepositoryTest {
 
         musicDef.setSamples(new HashSet<Sample>(Arrays.asList(sampleDef)));
 
+		final Sample sampleDefSaved = sampleRepo.save(sampleDef).block();
+		
 
         Match newMatch = new Match();
-        newMatch.setName(samplePleaseStop.getName());
-        newMatch.setSampleFromRule(sampleDef.getName());
+        newMatch.setThisSample(samplePleaseStopSaved.getId());
+        newMatch.setThatSampleFromRule(sampleDefSaved.getId());
         newMatch.setRule("BY_SAME_ARTIST_NAME");
 
 
@@ -76,7 +85,8 @@ public class MatchRepositoryTest {
 		// Then
 		assertThat(saved.getId()).isNotNull();
 		assertThat(saved.getRule()).isEqualTo("BY_SAME_ARTIST_NAME");
-		
+		assertThat(saved.getThisSample()).isEqualTo(samplePleaseStopSaved.getId());
+		assertThat(saved.getThatSampleFromRule()).isEqualTo(sampleDefSaved.getId());
 	}
 
 	@Test
@@ -94,6 +104,9 @@ public class MatchRepositoryTest {
 
         musicPleaseStop.setSamples(new HashSet<Sample>(Arrays.asList(samplePleaseStop)));
 
+		final Sample samplePleaseStopSaved = sampleRepo.save(samplePleaseStop).block();
+		
+		
         Music musicDef = new Music();
         musicDef.setArtist("Latmun");
         musicDef.setName("def (Original Mix)");
@@ -105,11 +118,14 @@ public class MatchRepositoryTest {
 
         musicDef.setSamples(new HashSet<Sample>(Arrays.asList(sampleDef)));
 
+		final Sample sampleDefSaved = sampleRepo.save(sampleDef).block();
+		
 
         Match newMatch = new Match();
-        newMatch.setName(samplePleaseStop.getName());
-        newMatch.setSampleFromRule(sampleDef.getName());
+        newMatch.setThisSample(samplePleaseStopSaved.getId());
+        newMatch.setThatSampleFromRule(sampleDefSaved.getId());
         newMatch.setRule("BY_SAME_ARTIST_NAME");
+
 
 		final Match saved = repo.save(newMatch).block();
 		
@@ -119,7 +135,8 @@ public class MatchRepositoryTest {
 		// Then
 		assertThat(retrieved).isNotNull();
 		assertThat(retrieved.getId()).isEqualTo(saved.getId());
-		assertThat(retrieved.getName()).isEqualTo(saved.getName());
+		assertThat(saved.getThisSample()).isEqualTo(samplePleaseStopSaved.getId());
+		assertThat(saved.getThatSampleFromRule()).isEqualTo(sampleDefSaved.getId());
 	}
 
 	@Test
@@ -137,6 +154,9 @@ public class MatchRepositoryTest {
 
         musicPleaseStop.setSamples(new HashSet<Sample>(Arrays.asList(samplePleaseStop)));
 
+		final Sample samplePleaseStopSaved = sampleRepo.save(samplePleaseStop).block();
+		
+		
         Music musicDef = new Music();
         musicDef.setArtist("Latmun");
         musicDef.setName("def (Original Mix)");
@@ -148,11 +168,14 @@ public class MatchRepositoryTest {
 
         musicDef.setSamples(new HashSet<Sample>(Arrays.asList(sampleDef)));
 
+		final Sample sampleDefSaved = sampleRepo.save(sampleDef).block();
+		
 
         Match newMatch = new Match();
-        newMatch.setName(samplePleaseStop.getName());
-        newMatch.setSampleFromRule(sampleDef.getName());
+        newMatch.setThisSample(samplePleaseStopSaved.getId());
+        newMatch.setThatSampleFromRule(sampleDefSaved.getId());
         newMatch.setRule("BY_SAME_ARTIST_NAME");
+
 
 		final Match saved = repo.save(newMatch).block();
 		
@@ -182,6 +205,9 @@ public class MatchRepositoryTest {
 
         musicPleaseStop.setSamples(new HashSet<Sample>(Arrays.asList(samplePleaseStop)));
 
+		final Sample samplePleaseStopSaved = sampleRepo.save(samplePleaseStop).block();
+		
+		
         Music musicDef = new Music();
         musicDef.setArtist("Latmun");
         musicDef.setName("def (Original Mix)");
@@ -193,10 +219,12 @@ public class MatchRepositoryTest {
 
         musicDef.setSamples(new HashSet<Sample>(Arrays.asList(sampleDef)));
 
+		final Sample sampleDefSaved = sampleRepo.save(sampleDef).block();
+		
 
         Match newMatch = new Match();
-        newMatch.setName(samplePleaseStop.getName());
-        newMatch.setSampleFromRule(sampleDef.getName());
+        newMatch.setThisSample(samplePleaseStopSaved.getId());
+        newMatch.setThatSampleFromRule(sampleDefSaved.getId());
         newMatch.setRule("BY_SAME_ARTIST_NAME");
 
 		final Match saved = repo.save(newMatch).block();
@@ -225,6 +253,9 @@ public class MatchRepositoryTest {
 
         musicPleaseStop.setSamples(new HashSet<Sample>(Arrays.asList(samplePleaseStop)));
 
+		final Sample samplePleaseStopSaved = sampleRepo.save(samplePleaseStop).block();
+		
+		
         Music musicDef = new Music();
         musicDef.setArtist("Latmun");
         musicDef.setName("def (Original Mix)");
@@ -236,11 +267,14 @@ public class MatchRepositoryTest {
 
         musicDef.setSamples(new HashSet<Sample>(Arrays.asList(sampleDef)));
 
+		final Sample sampleDefSaved = sampleRepo.save(sampleDef).block();
+		
 
         Match newMatch = new Match();
-        newMatch.setName(samplePleaseStop.getName());
-        newMatch.setSampleFromRule(sampleDef.getName());
+        newMatch.setThisSample(samplePleaseStopSaved.getId());
+        newMatch.setThatSampleFromRule(sampleDefSaved.getId());
         newMatch.setRule("BY_SAME_ARTIST_NAME");
+
 
 		repo.save(newMatch).block();
 		

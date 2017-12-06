@@ -7,6 +7,8 @@ import org.bson.types.ObjectId;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.perfectmatch.common.interfaces.ByArtistQueryable;
+import com.perfectmatch.common.model.NameableEntity;
 
 
 /**
@@ -15,7 +17,9 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
  *
  */
 
-public final class Music {
+public final class Music implements NameableEntity, ByArtistQueryable {
+
+
 
 	@JsonSerialize(using = ToStringSerializer.class)
 	private ObjectId id;
@@ -42,7 +46,8 @@ public final class Music {
 		this.style = style;
 		this.samples = samples;
 	}
-
+    
+    @Override
 	public ObjectId getId() {
 		return id;
 	}
@@ -50,7 +55,8 @@ public final class Music {
 	public void setId(ObjectId id) {
 		this.id = id;
 	}
-
+	
+    @Override
 	public String getArtist() {
 		return artist;
 	}
