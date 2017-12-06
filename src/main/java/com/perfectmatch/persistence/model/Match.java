@@ -24,6 +24,10 @@ public final class Match {
     private String rule;
   
 
+	public Match() {
+		super();
+	}
+	
 	public Match(ObjectId id, String name, String sampleFromRule, String rule) {
 		super();
 		this.id = id;
