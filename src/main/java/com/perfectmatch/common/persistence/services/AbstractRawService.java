@@ -1,6 +1,5 @@
 package com.perfectmatch.common.persistence.services;
 
-
 import java.util.List;
 
 import org.assertj.core.util.Preconditions;
@@ -20,98 +19,94 @@ import reactor.core.publisher.Mono;
 @Transactional
 public abstract class AbstractRawService<T extends NameableEntity> implements IOperations<T> {
 
-    protected final Logger logger = LoggerFactory.getLogger(getClass());
+	protected final Logger logger = LoggerFactory.getLogger(getClass());
 
+	public AbstractRawService() {
+		super();
+	}
 
-    public AbstractRawService() {
-        super();
-    }
+	// API
 
-    // API
+	// search
 
-    // search
+	// find - one
 
-    // find - one
+	// TODO: whey this
+	// @Override
+	// @Transactional(readOnly = true)
+	// public T findOne(final long id) {
+	//
+	// return getDao().findOne(id);
+	// }
 
-    //TODO: whey this 
-//    @Override
-//    @Transactional(readOnly = true)
-//    public T findOne(final long id) {
-//
-//        return getDao().findOne(id);
-//    }
+	// find - all
 
-    // find - all
+	@Override
+	@Transactional(readOnly = true)
+	public List<T> findAll() {
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<T> findAll() {
+		return getDao().findAll().collectList().block();
+	}
 
-      
-        return  getDao().findAll().collectList().block();
-    }
+	// save/create/persist
 
+	@Override
+	public Mono<T> create(final T entity) {
 
+		Preconditions.checkNotNull(entity);
+		return getDao().save(entity);
+	}
 
-    // save/create/persist
+	// update/merge
 
-    @Override
-    public Mono<T> create(final T entity) {
+	@Override
+	public void update(final T entity) {
 
-        Preconditions.checkNotNull(entity);
-        return getDao().save(entity);
-    }
+		Preconditions.checkNotNull(entity);
 
-    // update/merge
+		getDao().save(entity);
+	}
 
-    @Override
-    public void update(final T entity) {
+	// delete
 
-        Preconditions.checkNotNull(entity);
+	@Override
+	public void deleteAll() {
 
-        getDao().save(entity);
-    }
+		getDao().deleteAll();
+	}
 
-    // delete
+	// @Override
+	// public void delete(final long id) {
+	//
+	// final T entity = getDao().findOne(id);
+	// ServicePreconditions.checkEntityExists(entity);
+	//
+	// getDao().delete(entity);
+	// }
 
-    @Override
-    public void deleteAll() {
+	// count
 
-        getDao().deleteAll();
-    }
+	@Override
+	public Mono<Long> count() {
 
-//    @Override
-//    public void delete(final long id) {
-//
-//        final T entity = getDao().findOne(id);
-//        ServicePreconditions.checkEntityExists(entity);
-//
-//        getDao().delete(entity);
-//    }
+		return getDao().count();
+	}
 
-    // count
+	// template method
 
-    @Override
-    public Mono<Long> count() {
+	protected abstract ReactiveCrudRepository<T, ObjectId> getDao();
+	// protected abstract PagingAndSortingRepository<T, Long> getDao();
+	// protected abstract JpaSpecificationExecutor<T> getSpecificationExecutor();
 
-        return getDao().count();
-    }
+	// template
 
-    // template method
-    
-    protected abstract ReactiveCrudRepository<T, ObjectId> getDao();
-    //protected abstract PagingAndSortingRepository<T, Long> getDao();
-    //protected abstract JpaSpecificationExecutor<T> getSpecificationExecutor();
+	protected final Sort constructSort(final String sortBy, final String sortOrder) {
 
-    // template
-
-    protected final Sort constructSort(final String sortBy, final String sortOrder) {
-
-        Sort sortInfo = null;
-        if (sortBy != null) {
-            sortInfo = new Sort(Direction.fromString(sortOrder), sortBy);
-        }
-        return sortInfo;
-    }
+		Sort sortInfo = null;
+		if (sortBy != null) {
+			sortInfo = new Sort(Direction.fromString(sortOrder), sortBy);
+		}
+		return sortInfo;
+	}
 
 }

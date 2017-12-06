@@ -20,7 +20,7 @@ import com.perfectmatch.web.exception.ApiError;
 import com.perfectmatch.web.exception.MyBadRequestException;
 
 
-@ControllerAdvice
+//@ControllerAdvice - Cause java.lang.ClassNotFoundException: javax.servlet.ServletException
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     private Logger log = LoggerFactory.getLogger(getClass());
