@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.perfectmatch.common.persistence.services.AbstractRawService;
 import com.perfectmatch.persistence.dao.MatchRepository;
 import com.perfectmatch.persistence.model.Match;
-import com.perfectmatch.web.services.SampleMatchService;
+import com.perfectmatch.web.services.MatchService;
 
 import reactor.core.publisher.Flux;
 
@@ -19,7 +19,7 @@ import reactor.core.publisher.Flux;
  */
 @Service
 //@Transactional
-public class SampleMatchServiceBean extends AbstractRawService<Match> implements SampleMatchService {
+public class SampleMatchServiceBean extends AbstractRawService<Match> implements MatchService {
 
     @Autowired
     private MatchRepository dao;

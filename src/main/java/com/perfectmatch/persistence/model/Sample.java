@@ -1,7 +1,5 @@
 package com.perfectmatch.persistence.model;
 
-import java.util.Set;
-
 import org.bson.types.ObjectId;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -13,26 +11,23 @@ import com.perfectmatch.common.model.NameableEntity;
  *
  */
 
-public class Sample  implements NameableEntity {
+public class Sample implements NameableEntity {
 
 
 	@JsonSerialize(using = ToStringSerializer.class)
 	private ObjectId id;
     private String name;
     private int timestamp;
-    private Set<Match> mathes;
-
 
     public Sample() {
 		super();
 	}
     
-    public Sample(ObjectId id, String name, int timestamp, Set<Match> mathes) {
+    public Sample(ObjectId id, String name, int timestamp) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.timestamp = timestamp;
-		this.mathes = mathes;
 	}
 
 	public ObjectId getId() {
@@ -59,13 +54,6 @@ public class Sample  implements NameableEntity {
 		this.timestamp = timestamp;
 	}
 
-	public Set<Match> getMathes() {
-		return mathes;
-	}
-
-	public void setMathes(Set<Match> mathes) {
-		this.mathes = mathes;
-	}
 
 	//TODO: Change these methods
 	/*
@@ -79,7 +67,6 @@ public class Sample  implements NameableEntity {
         final int prime = 31;
         int result = 1;
         result = prime * result + (id == null ? 0 : id.hashCode());
-        result = prime * result + (mathes == null ? 0 : mathes.hashCode());
         result = prime * result + (name == null ? 0 : name.hashCode());
         result = prime * result + timestamp;
         return result;
@@ -109,14 +96,6 @@ public class Sample  implements NameableEntity {
             }
         }
         else if (!id.equals(other.id)) {
-            return false;
-        }
-        if (mathes == null) {
-            if (other.mathes != null) {
-                return false;
-            }
-        }
-        else if (!mathes.equals(other.mathes)) {
             return false;
         }
         if (name == null) {

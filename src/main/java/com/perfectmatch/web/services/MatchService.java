@@ -10,7 +10,7 @@ import com.perfectmatch.persistence.model.Match;
  * Controllers
  *
  */
-public interface SampleMatchService extends PersistenceService<Match>, IOperations<Match>, ByNameSearchable<Match> {
+public interface MatchService extends PersistenceService<Match>, IOperations<Match>, ByNameSearchable<Match> {
 
     //
 

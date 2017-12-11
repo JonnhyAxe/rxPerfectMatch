@@ -13,7 +13,7 @@ import com.perfectmatch.web.services.impl.SampleMatchServiceBean;
 
 @RestController
 @RequestMapping("/match")
-public class SampleMatchController {
+public class MatchController {
 
     @Autowired
     private SampleMatchServiceBean sampleMatchServiceBean;
