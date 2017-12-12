@@ -8,7 +8,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,14 +38,14 @@ public class MusicController {
     @Autowired
     private MusicServiceBean musicService;
 
-    @RequestMapping(path = "/repo", method = RequestMethod.GET)
+    @GetMapping("/repo")
     @Secured({ "ROLE_USER_READ" })
     public Flux<Music> findByRepo() throws IOException {
 
         return musicService.getDao().findAll();
     }
 
-    @RequestMapping(path = "/{name}", method = RequestMethod.GET)
+    @GetMapping("/{name}")
     public Flux<Music> findByName(@PathVariable("name")
     @Valid
     final String musicName) {
@@ -51,7 +53,7 @@ public class MusicController {
         return musicService.findByName(musicName);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+	@PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Music> create(@RequestBody
     @Valid

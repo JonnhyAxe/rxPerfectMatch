@@ -11,7 +11,8 @@ import reactor.core.publisher.Mono;
 
 @Component
 public class CorsFilter implements WebFilter {
-	//TODO: replace with the annotation
+	//TODO: replace with the annotation in the filter controller
+	//@CrossOrigin(origins = {"http://localhost:4200"})
     @Override
     public Mono<Void> filter(final ServerWebExchange serverWebExchange, final WebFilterChain webFilterChain) {
         // Adapted from https://sandstorm.de/de/blog/post/cors-headers-for-spring-boot-kotlin-webflux-reactor-project.html

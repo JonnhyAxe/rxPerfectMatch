@@ -4,8 +4,8 @@ package com.perfectmatch.web.controller;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.perfectmatch.persistence.model.Match;
@@ -18,7 +18,7 @@ public class MatchController {
     @Autowired
     private SampleMatchServiceBean sampleMatchServiceBean;
 
-    @RequestMapping(path = "/repo", method = RequestMethod.GET)
+    @GetMapping("/repo")
     public Iterable<Match> findByRepo() throws IOException {
 
         return sampleMatchServiceBean.findAll();
