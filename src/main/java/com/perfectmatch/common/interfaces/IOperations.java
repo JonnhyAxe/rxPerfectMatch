@@ -3,6 +3,7 @@ package com.perfectmatch.common.interfaces;
 import java.io.Serializable;
 import java.util.List;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface IOperations<T extends Serializable> {
@@ -15,7 +16,7 @@ public interface IOperations<T extends Serializable> {
      * - contract: if nothing is found, an empty list will be returned to the
      * calling client <br>
      */
-    List<T> findAll();
+	Mono<List<T>> findAll();
 
 
     // create

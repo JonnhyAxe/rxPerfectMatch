@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.perfectmatch.common.interfaces.IOperations;
 import com.perfectmatch.common.model.NameableEntity;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Transactional
@@ -43,9 +44,9 @@ public abstract class AbstractRawService<T extends NameableEntity> implements IO
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<T> findAll() {
+	public Mono<List<T>> findAll() {
 
-		return getDao().findAll().collectList().block();
+		return getDao().findAll().collectList();
 	}
 
 	// save/create/persist
