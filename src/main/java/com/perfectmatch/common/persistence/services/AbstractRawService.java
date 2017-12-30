@@ -76,14 +76,16 @@ public abstract class AbstractRawService<T extends NameableEntity> implements IO
 		getDao().deleteAll();
 	}
 
-	// @Override
-	// public void delete(final long id) {
-	//
-	// final T entity = getDao().findOne(id);
-	// ServicePreconditions.checkEntityExists(entity);
-	//
-	// getDao().delete(entity);
-	// }
+	 @Override
+	 public void delete(final ObjectId id) throws Exception {
+	
+		 final T entity = getDao().findById(id).block();
+		 //ServicePreconditions.checkEntityExists(entity);
+		
+		 getDao().delete(entity);
+	 }
+
+	 //TODO : 	 public void delete(final T id) throws Exception {
 
 	// count
 

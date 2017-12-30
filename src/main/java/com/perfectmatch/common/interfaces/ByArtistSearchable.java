@@ -8,6 +8,6 @@ import java.util.Set;
  */
 public interface ByArtistSearchable<T extends ByArtistQueryable> {
 
-	
+	//TODO: chnge to Stream API
     Set<T> findByArtist(String name);
 }

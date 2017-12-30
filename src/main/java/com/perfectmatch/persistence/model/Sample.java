@@ -112,5 +112,10 @@ public class Sample implements NameableEntity {
         return true;
     }
 
+	@Override
+	public String toString() {
+		return "Sample [id=" + id + ", name=" + name + ", timestamp=" + timestamp + "]";
+	}
+
 
 }

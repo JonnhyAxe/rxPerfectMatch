@@ -183,4 +183,10 @@ public final class Music implements NameableEntity, ByArtistQueryable {
 		}
     }
 
+	@Override
+	public String toString() {
+		return "Music [id=" + id + ", artist=" + artist + ", name=" + name + ", style=" + style + ", samples=" + samples
+				+ "]";
+	}
+
 }

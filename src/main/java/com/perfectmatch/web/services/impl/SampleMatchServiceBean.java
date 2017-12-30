@@ -1,5 +1,7 @@
 package com.perfectmatch.web.services.impl;
 
+import org.assertj.core.util.Preconditions;
+
 //import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +37,14 @@ public class SampleMatchServiceBean extends AbstractRawService<Match> implements
 
         return this.dao;
     }
+    
+    //only for test purposes
+    public void setDao(MatchRepository dao) {
 
+       this.dao = dao;
+    
+    }
+    
     /*
      * (non-Javadoc)
      *
@@ -49,4 +58,9 @@ public class SampleMatchServiceBean extends AbstractRawService<Match> implements
        throw new UnsupportedOperationException();
     }
 
+	@Override
+	public void update(final Match entity) {
+
+		 throw new UnsupportedOperationException();
+	}
 }

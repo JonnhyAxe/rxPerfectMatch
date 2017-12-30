@@ -65,7 +65,9 @@ public class MusicController {
     @Valid
     final Music resource) {
 
-		return Mono.justOrEmpty(resource.getName())
+		return null;
+		/*
+		 * Mono.justOrEmpty(resource.getName())
 				.flatMap(name -> musicService.findByName(name).blockFirst())
 				.defaultIfEmpty(Boolean.FALSE)
 				.flatMap(exists -> {
@@ -81,7 +83,7 @@ public class MusicController {
 		
         if (resource.getArtist() == null) {
             throw new MyBadRequestException("Artist must not be null");
-        }
+        }*/
         
     }
 
