@@ -49,4 +49,9 @@ public class SampleServiceBean extends AbstractRawService<Sample> implements Sam
         return this.sampleRepository.findByName(name);
     }
 
+	public void setDao(SampleRepository sampleRepository) {
+		this.sampleRepository = sampleRepository;
+		
+	}
+
 }

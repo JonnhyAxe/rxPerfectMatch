@@ -17,12 +17,14 @@ import reactor.core.publisher.Flux;
 public class SampleController {
 
     @Autowired
-    private SampleServiceBean SampleService;
+    private SampleServiceBean sampleService;
 
 	@GetMapping("/repo")
     public Flux<Sample> findByRepo() throws IOException {
-
-        return SampleService.getDao().findAll();
+		
+        return sampleService.getDao().findAll();
     }
+	
+	
 
 }
