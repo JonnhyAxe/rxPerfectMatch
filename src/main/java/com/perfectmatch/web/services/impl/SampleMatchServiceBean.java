@@ -1,7 +1,5 @@
 package com.perfectmatch.web.services.impl;
 
-import org.assertj.core.util.Preconditions;
-
 //import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,7 @@ import com.perfectmatch.persistence.dao.MatchRepository;
 import com.perfectmatch.persistence.model.Match;
 import com.perfectmatch.web.services.MatchService;
 
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  *
@@ -53,7 +51,7 @@ public class SampleMatchServiceBean extends AbstractRawService<Match> implements
      * String)
      */
     @Override
-    public Flux<Match> findByName(String name) {
+    public Mono<Match> findByName(String name) {
 
        throw new UnsupportedOperationException();
     }

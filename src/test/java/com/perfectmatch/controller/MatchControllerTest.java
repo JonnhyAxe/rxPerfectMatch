@@ -19,14 +19,22 @@ import org.springframework.http.ResponseEntity;
 import com.perfectmatch.persistence.dao.MatchRepository;
 import com.perfectmatch.persistence.model.Match;
 import com.perfectmatch.web.controller.MatchController;
+import com.perfectmatch.web.services.impl.SampleMatchServiceBean;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MatchControllerTest {
 	
 	@Mock
 	private MatchRepository repo;
+
+	
+	@Mock
+    private SampleMatchServiceBean sampleMatchServiceBean;
+
+    
 
 	@InjectMocks
 	private MatchController controller;
@@ -39,7 +47,7 @@ public class MatchControllerTest {
 		final List<Match> matchs = asList(
 				new Match(), 
 				new Match());
-		when(repo.findAll()).thenReturn(Flux.fromIterable(matchs));
+		when(sampleMatchServiceBean.findAll()).thenReturn(Mono.just(matchs));
 
 		// When
 		final ResponseEntity<List<Match>> response = controller.findByRepo().block();
@@ -54,7 +62,7 @@ public class MatchControllerTest {
 	public void shouldReturnEmptyBodyWhenNoMatchs() throws IOException {
 
 		// Given
-		when(repo.findAll()).thenReturn(Flux.empty());
+		when(sampleMatchServiceBean.findAll()).thenReturn(Mono.empty());
 
 		// When
 		final ResponseEntity<List<Match>> response = controller.findByRepo().block();

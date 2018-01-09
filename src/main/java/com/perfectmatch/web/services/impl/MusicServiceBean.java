@@ -1,5 +1,6 @@
 package com.perfectmatch.web.services.impl;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import org.bson.types.ObjectId;
 //import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.perfectmatch.common.persistence.services.AbstractRawService;
@@ -19,6 +21,7 @@ import com.perfectmatch.persistence.model.Sample;
 import com.perfectmatch.web.services.MusicService;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * Expose web services for Music Entity
@@ -48,7 +51,7 @@ public class MusicServiceBean extends AbstractRawService<Music>  implements Musi
     }
 
     @Override
-    public Flux<Music> findByName(final String name) {
+    public Mono<Music> findByName(final String name) {
 
         return getDao().findByName(name);
     }
@@ -92,6 +95,7 @@ public class MusicServiceBean extends AbstractRawService<Music>  implements Musi
 		 super.delete(id);
 	 }
 	 
+
 	public void setDao(MusicRepository dao) {
 		this.dao = dao;
 		
@@ -113,5 +117,7 @@ public class MusicServiceBean extends AbstractRawService<Music>  implements Musi
 	public void setMatchDao(MatchRepository matchDao) {
 		this.matchDao = matchDao;
 	}
+
+
 	
 }

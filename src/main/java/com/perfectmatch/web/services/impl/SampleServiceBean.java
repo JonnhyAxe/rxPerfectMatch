@@ -10,7 +10,7 @@ import com.perfectmatch.persistence.dao.SampleRepository;
 import com.perfectmatch.persistence.model.Sample;
 import com.perfectmatch.web.services.SampleService;
 
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  *
@@ -44,7 +44,7 @@ public class SampleServiceBean extends AbstractRawService<Sample> implements Sam
      * String)
      */
     @Override
-    public Flux<Sample> findByName(String name) {
+    public Mono<Sample> findByName(String name) {
 
         return this.sampleRepository.findByName(name);
     }

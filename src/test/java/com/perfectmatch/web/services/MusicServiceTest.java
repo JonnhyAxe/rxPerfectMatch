@@ -65,10 +65,10 @@ public class MusicServiceTest {
     			.withName(musicName)
     			.build();
     	
-        when(dao.findByName(musicName)).thenReturn(Flux.just(expectedMusic));
+        when(dao.findByName(musicName)).thenReturn(Mono.just(expectedMusic));
 
     	//When
-    	Music savedMusic = this.musicService.findByName(musicName).blockFirst();
+    	Music savedMusic = this.musicService.findByName(musicName).block();
     	
     	//Then
     	verify(dao, times(1)).findByName(musicName);
@@ -226,7 +226,7 @@ public class MusicServiceTest {
     	Match match = new Match();
        
     	//when(dao.findById(musicId)).thenReturn(Mono.just(expectedMusic));
-        when(matchDao.findById(sampleId)).thenReturn(Mono.just(match));
+        //when(matchDao.findById(sampleId)).thenReturn(Mono.just(match));
 
     	//When
         this.musicService.delete(expectedMusic.getId());

@@ -17,7 +17,7 @@ import com.perfectmatch.persistence.model.Sample;
 import com.perfectmatch.persistence.model.Style;
 import com.perfectmatch.web.services.impl.SampleServiceBean;
 
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SampleServiceTest {
@@ -49,10 +49,10 @@ public class SampleServiceTest {
 		sampleDef.setTimestamp(3 * 60); // Start time stamp at 00:03:00m
         sampleDef.setName(sampleName);
         
-        when(this.sampleRepository.findByName(sampleName)).thenReturn(Flux.just(sampleDef));
+        when(this.sampleRepository.findByName(sampleName)).thenReturn(Mono.just(sampleDef));
         
 	    //when    
-		Sample actualSample =  this.sampleService.findByName(sampleName).blockFirst();
+		Sample actualSample =  this.sampleService.findByName(sampleName).block();
 		
 		//Then
 		verify(this.sampleRepository).findByName(sampleName);

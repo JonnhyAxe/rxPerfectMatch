@@ -1,6 +1,11 @@
 package com.perfectmatch.common.interfaces;
 
+import com.perfectmatch.persistence.model.Match;
+import com.perfectmatch.persistence.model.Music;
+import com.perfectmatch.persistence.model.Sample;
+
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * This interface is used by the business logic as the name 'Searchable' (rather
@@ -9,5 +14,5 @@ import reactor.core.publisher.Flux;
  */
 public interface ByNameSearchable<T extends ByNameQueryable> {
 
-	Flux<T> findByName(final String name);
+	Mono<T> findByName(final String name);
 }
