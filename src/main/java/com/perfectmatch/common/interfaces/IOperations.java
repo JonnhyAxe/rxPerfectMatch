@@ -20,7 +20,7 @@ public interface IOperations<T extends Serializable> {
      * - contract: if nothing is found, an empty list will be returned to the
      * calling client <br>
      */
-	Mono<List<T>> findAll();
+	Flux<T> findAll();
 
 
     // create

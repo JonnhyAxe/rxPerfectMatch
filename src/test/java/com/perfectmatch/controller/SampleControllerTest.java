@@ -30,23 +30,11 @@ import reactor.core.publisher.Flux;
 @RunWith(MockitoJUnitRunner.class)
 public class SampleControllerTest {
 
-
-	@Mock 
-	private SampleRepository sampleRepo;
-	
 	@Mock
     private SampleServiceBean sampleService;
 
 	@InjectMocks
 	private SampleController controller;
-	
-	
-	@Before 
-	public void setUp() {
-		MockitoAnnotations.initMocks(this);
-		when(sampleService.getDao()).thenReturn(sampleRepo);
-	}
-
 	
 	@Test
 	public void shouldReturnAllSamples() throws IOException {
@@ -57,15 +45,14 @@ public class SampleControllerTest {
 				new Sample(ObjectId.get(), "Sample 2", 12431235));
 		
 		
-		when(sampleRepo.findAll()).thenReturn(Flux.fromIterable(customers));
+		when(sampleService.findAll()).thenReturn(Flux.fromIterable(customers));
 		//when(sampleRepo.findAll()).thenReturn(Flux.just(customers));
 
 		// When
-		final ResponseEntity<List<Sample>> response = controller.findByRepo().block();
+		final List<Sample> response = controller.findByRepo().collectList().block();
 
 		// Then
-		assertThat(response.getStatusCode()).isEqualTo(OK);
-		assertThat((Iterable<Sample>) response.getBody()).asList().containsAll(customers);
+		assertThat(response).asList().containsAll(customers);
 
 	}
 	

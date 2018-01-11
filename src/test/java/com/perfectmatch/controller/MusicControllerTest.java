@@ -38,16 +38,13 @@ public class MusicControllerTest {
 	@Mock
     private MusicServiceBean musicService;
 
-	@Mock
-    private MusicRepository dao;
-    
 	@InjectMocks
 	private MusicController controller;
 	
-	@Before
-	public void setUp() {
-		when(musicService.getDao()).thenReturn(dao);
-	}
+//	@Before
+//	public void setUp() {
+//		when(musicService.getDao()).thenReturn(dao);
+//	}
 
 	
 	@Test
@@ -59,27 +56,26 @@ public class MusicControllerTest {
 				Music.ofType(Style.TECH_HOUSE).withName("music1").build(),
 				Music.ofType(Style.TECH_HOUSE).withName("music1").build());
 
-		when(dao.findAll()).thenReturn(Flux.fromIterable(customers));
+		when(musicService.findAll()).thenReturn(Flux.fromIterable(customers));
 
 		// When
-		final ResponseEntity<List<Music>> response = controller.findByRepo().block();
+		final List<Music> response = controller.findByRepo().collectList().block();
 
 		// Then
-		assertThat(response.getStatusCode()).isEqualTo(OK);
-		assertThat((Iterable<Music>) response.getBody()).asList().containsAll(customers);
+		assertThat(response).asList().containsAll(customers);
 	}
 	
 	@Test
 	public void shouldReturnEmptyBodyWhenNoMusics() throws IOException {
 
 		// Given
-		when(dao.findAll()).thenReturn(Flux.empty());
+		when(musicService.findAll()).thenReturn(Flux.empty());
 
 		// When
-		final ResponseEntity<List<Music>> response = controller.findByRepo().block();
+		final List<Music> response = controller.findByRepo().collectList().block();
 
 		// Then
-		assertThat(response.getStatusCode()).isEqualTo(OK);
+		assertThat(response).asList().isEmpty();
 	}
 	
 	@Test
@@ -92,11 +88,11 @@ public class MusicControllerTest {
 		when(musicService.findByName(musicName)).thenReturn(Mono.just(customer));
 
 		// When
-		final  ResponseEntity<Music> response  = controller.findByName(musicName).block();
+		final  Music response  = controller.findByName(musicName).block();
 
 		// Then
-		assertThat(response.getStatusCode()).isEqualTo(OK);
-		assertThat(response.getBody()).isEqualTo(customer);
+	
+		assertThat(response).isEqualTo(customer);
 	}
 	
 	@Test
@@ -106,11 +102,10 @@ public class MusicControllerTest {
 		when(musicService.findByName(musicName)).thenReturn(Mono.empty());
 
 		// When
-		final ResponseEntity<Music> response = controller.findByName(musicName).block();
+		final Music response = controller.findByName(musicName).block();
 
 		// Then
-		assertThat(response).isNotNull();
-		assertThat(response.getStatusCode()).isEqualTo(NOT_FOUND);
+		assertThat(response).isNull();
 	
 	}
 	

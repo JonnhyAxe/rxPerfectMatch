@@ -44,9 +44,9 @@ public abstract class AbstractRawService<T extends NameableEntity> implements IO
 
 	@Override
 	@Transactional(readOnly = true)
-	public Mono<List<T>> findAll() {
+	public Flux<T> findAll() {
 
-		return getDao().findAll().collectList();
+		return getDao().findAll();
 	}
 
 	// save/create/persist

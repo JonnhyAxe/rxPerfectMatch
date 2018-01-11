@@ -1,13 +1,8 @@
 package com.perfectmatch.web.controller;
 
-import static org.springframework.http.ResponseEntity.noContent;
-import static org.springframework.http.ResponseEntity.ok;
-
 import java.io.IOException;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.perfectmatch.persistence.model.Sample;
 import com.perfectmatch.web.services.impl.SampleServiceBean;
 
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
 @RestController
 @RequestMapping("/sample")
@@ -25,12 +20,9 @@ public class SampleController {
     private SampleServiceBean sampleService;
 
 	@GetMapping("/repo")
-    public Mono<ResponseEntity<List<Sample>>> findByRepo() throws IOException {
-		//musicService.getDao().findAll().collectList()
+    public Flux<Sample> findByRepo() throws IOException {
 		
-		return sampleService.getDao().findAll().collectList()
-    			.map(music -> ok(music))
-    			.defaultIfEmpty(noContent().build());
+		return sampleService.findAll();
     }
 	
 	
