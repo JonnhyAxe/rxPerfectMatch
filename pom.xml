@@ -4,9 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.perfectmatch</groupId>
-	<artifactId>RxPerfectmatch</artifactId>
+	<artifactId>PerfectmatchRx</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>RxPerfectmatch</name>
+	<name>PerfectmatchRx</name>
     <description>Reactive Core Project for matching samples of audio</description>
 	
 	<properties>
@@ -32,10 +32,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
-<!-- 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-undertow</artifactId>
-		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -53,6 +49,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.16.20</version>
+		    <scope>compile</scope>
+		</dependency>
+		
 
 		<!-- OAuth2 -->
 		<dependency>

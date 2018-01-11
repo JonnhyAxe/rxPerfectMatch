@@ -4,18 +4,27 @@ package com.perfectmatch.persistence.model;
 import java.util.Objects;
 
 import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import com.perfectmatch.common.interfaces.ByIdQueryable;
 import com.perfectmatch.common.model.NameableEntity;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 /**
  *
  * Represents an match between two samples
  *
  */
 
-
+//@Data
+//@Document
+//@Builder
+//@NoArgsConstructor
+//@AllArgsConstructor
 public final class Match implements NameableEntity {
 
 
@@ -25,11 +34,10 @@ public final class Match implements NameableEntity {
     private Object thatSampleFromRule;
     private String rule;
   
-
 	public Match() {
 		super();
 	}
-	
+
 	public Match(ObjectId id, String thisSample, String thatSample, String rule) {
 		super();
 		this.id = id;

@@ -95,6 +95,7 @@ public class PerfectMatchSetup implements ApplicationListener<ContextRefreshedEv
 
 
         Match newMatch = new Match();
+//        Match.builder();
         newMatch.setThisSample(savedSamplePleaseStop.getId());
         newMatch.setThatSampleFromRule(savedSampleDef.getId());
         newMatch.setRule("BY_SAME_ARTIST_NAME");
