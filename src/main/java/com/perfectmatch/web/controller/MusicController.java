@@ -67,7 +67,7 @@ public class MusicController {
 		 return Mono.justOrEmpty(resource.getName())
 				.map(name -> {
 					
-					if (Objects.isNull(musicService.findByName(name).block())) {
+					if (Objects.isNull(musicService.findByName(name).block())) {//TODO: is this pure reactive?
 //						throw new CustomerException(HttpStatus.BAD_REQUEST,
 //							"Customer already exists, to update an existing customer use PUT instead.");
 						throw new RuntimeException("Music already exists, to update an existing Music");

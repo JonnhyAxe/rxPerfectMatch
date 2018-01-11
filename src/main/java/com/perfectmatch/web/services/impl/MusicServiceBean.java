@@ -65,7 +65,7 @@ public class MusicServiceBean extends AbstractRawService<Music>  implements Musi
 	@Override
 	public void update(final Music music) {
 		//supported only for samples
-		 Music musicToUpdate = this.getDao().findById(music.getId()).block();
+		 Music musicToUpdate = this.getDao().findById(music.getId()).block();//TODO: is this pure reactive?
 		 
 		 Set<Sample> samplesSaved = musicToUpdate.getSamples();
 		 Set<Sample> samplesToUpdate = music.getSamples();
@@ -82,7 +82,7 @@ public class MusicServiceBean extends AbstractRawService<Music>  implements Musi
 	 public void delete(final ObjectId id) throws Exception {
 	
 		 //TODO: extract code to an SampleUtils module
-		 Music musictoDelete = this.getDao().findById(id).block(); //TODO: is this reactive?
+		 Music musictoDelete = this.getDao().findById(id).block(); //TODO: is this pure reactive?
 		 Optional<Sample> musichSampleAsMatch =  musictoDelete.getSamples().stream()
 		 	.filter(sample -> this.getMatchDao().findById(sample.getId()).hasElement().block())
 		 	.findFirst();

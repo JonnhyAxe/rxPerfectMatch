@@ -79,7 +79,7 @@ public abstract class AbstractRawService<T extends NameableEntity> implements IO
 	 @Override
 	 public void delete(final ObjectId id) throws Exception {
 	
-		 final T entity = getDao().findById(id).block();
+		 final T entity = getDao().findById(id).block(); //TODO: is this pure reactive?
 		 //ServicePreconditions.checkEntityExists(entity);
 		
 		 getDao().delete(entity);

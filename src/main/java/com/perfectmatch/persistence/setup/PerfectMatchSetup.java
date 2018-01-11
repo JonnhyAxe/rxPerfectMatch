@@ -70,7 +70,7 @@ public class PerfectMatchSetup implements ApplicationListener<ContextRefreshedEv
         musicPleaseStop.setName("Please Stop (Original Mix)");
         musicPleaseStop.setStyle(Style.TECH_HOUSE.name());
 
-        Music musicPleaseStopSaved = musicService.create(musicPleaseStop).block();
+        Music musicPleaseStopSaved = musicService.create(musicPleaseStop).block();//TODO: is this pure reactive?
         
         Sample samplePleaseStop = new Sample();
         samplePleaseStop.setTimestamp(3 * 60); // Start time stamp at 00:03:00m
