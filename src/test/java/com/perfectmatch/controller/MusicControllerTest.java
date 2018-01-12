@@ -2,19 +2,14 @@ package com.perfectmatch.controller;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.NO_CONTENT;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
-import static org.springframework.http.ResponseEntity.ok;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 import java.io.IOException;
 import java.util.List;
 
 import org.bson.types.ObjectId;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -23,7 +18,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import com.perfectmatch.persistence.dao.MusicRepository;
 import com.perfectmatch.persistence.model.Music;
 import com.perfectmatch.persistence.model.Style;
 import com.perfectmatch.web.controller.MusicController;
@@ -111,7 +105,7 @@ public class MusicControllerTest {
 	
 	
 	@Test
-	public void shouldAddANewMusic() throws Exception {
+	public void shouldNotAddANewMusic() throws Exception {
 
 		// Given
 		final Music newMusic = Music.ofType(Style.TECH_HOUSE).withName("music").build();
@@ -120,6 +114,24 @@ public class MusicControllerTest {
 		ReflectionTestUtils.setField(newMusic, "id", id);
 
 		when(musicService.findByName("music")).thenReturn(Mono.just(newMusic));
+
+		// When
+		final ResponseEntity<?> response = controller.create(newMusic).block();
+
+		// Then
+		assertThat(response.getStatusCode()).isEqualTo(INTERNAL_SERVER_ERROR);
+	}
+	
+	@Test
+	public void shouldAddANewMusic() throws Exception {
+
+		// Given
+		final Music newMusic = Music.ofType(Style.TECH_HOUSE).withName("music").build();
+
+		final ObjectId id = ObjectId.get();
+		ReflectionTestUtils.setField(newMusic, "id", id);
+
+		when(musicService.findByName("music")).thenReturn(Mono.empty());
 		when(musicService.create(newMusic)).thenReturn(Mono.just(newMusic));
 
 		// When

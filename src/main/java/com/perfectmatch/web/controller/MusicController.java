@@ -2,6 +2,7 @@ package com.perfectmatch.web.controller;
 
 
 import static org.springframework.http.ResponseEntity.created;
+import static org.springframework.http.ResponseEntity.status;
 import static org.springframework.http.ResponseEntity.notFound;
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -12,7 +13,9 @@ import java.util.Objects;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,11 +60,12 @@ public class MusicController {
 		
 		 return Mono.justOrEmpty(resource.getName())
 				.map(name -> {
-					
-					if (Objects.isNull(musicService.findByName(name).block())) {//TODO: is this pure reactive?
+					//TODO: change by advisor
+					if (Objects.nonNull(musicService.findByName(name).block())) {
 //						throw new CustomerException(HttpStatus.BAD_REQUEST,
 //							"Customer already exists, to update an existing customer use PUT instead.");
-						throw new RuntimeException("Music already exists, to update an existing Music");
+						//throw new RuntimeException("Music already exists, to update an existing Music");
+						return status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 					}
 					return created(URI.create(String.format("/customers/%s", this.musicService.create(resource).block().getId()))).build();
 
