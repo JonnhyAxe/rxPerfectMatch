@@ -1,0 +1,21 @@
+language: java
+    
+jdk:
+  - oraclejdk8
+
+#services:
+#  - docker
+  
+notifications:
+  email:
+    - 00jmsmachado@gmail.com
+  on_success: always
+  on_failure: always
+
+#before_install:
+#  - nvm install 6.9
+#  - nvm use 6.9
+
+      
+script:
+  mvn clean install
