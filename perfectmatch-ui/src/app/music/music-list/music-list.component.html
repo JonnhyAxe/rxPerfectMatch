@@ -1,0 +1,46 @@
+<div class="generic-container">
+    <div class="panel panel-default">
+		<div class="container">
+		  <div class="row">
+		    <div class="col">
+		      <section>
+		        <header class="header">
+		          <div class="row">
+		            <div class="col-md-4">
+		              <h1>Musics</h1>
+		            </div>
+		            <div class="col-md-6">
+		            </div>
+		            <div class="col-md-2">
+		            </div>
+		          </div>
+		        </header>
+		      </section>
+		
+		      <section class="main">
+		        <table class="table">
+		          <thead>
+		          <tr>
+		            <th>#</th>
+		            <th>Artist</th>
+		            <th>Name</th>
+		            <th>Style</th>		            
+		            <th></th>
+		          </tr>
+		          </thead>
+		          <tbody>
+		          <tr *ngFor="let music of musics">
+		            <th scope="row">{{music.id}}</th>
+		            <td>{{music.artist}}</td>
+		            <td>{{music.name}}</td>
+		            <td>{{music.style}}</td>
+		            <td> </td>
+		          </tr>
+		          </tbody>
+		        </table>
+		      </section>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,46 @@
+<div class="generic-container">
+    <div class="panel panel-default">
+		<div class="container">
+		  <div class="row">
+		    <div class="col">
+		      <section>
+		        <header class="header">
+		          <div class="row">
+		            <div class="col-md-4">
+		              <h1>Match(s) founded</h1>
+		            </div>
+		            <div class="col-md-6">
+		            </div>
+		            <div class="col-md-2">
+		            </div>
+		          </div>
+		        </header>
+		      </section>
+		
+		      <section class="main">
+		        <table class="table">
+		          <thead>
+		          <tr>
+		            <th>#</th>
+		            <th>Sample From</th>
+		            <th>Rule</th>
+		            <th>Sample To</th>		            		            
+		            <th></th>
+		          </tr>
+		          </thead>
+		          <tbody>
+		          <tr *ngFor="let match of matchs">
+		            <th scope="row">{{match.id}}</th>
+		            <td>{{match.thisSampleName}}</td>
+		            <td>{{match.rule}}</td>
+		            <td>{{match.thatSampleName}}</td>
+		            <td> </td>
+		          </tr>
+		          </tbody>
+		        </table>
+		      </section>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</div>
