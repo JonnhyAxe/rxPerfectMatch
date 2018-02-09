@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
 
+After download the code, cd to the root folder of the project and `npm install`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -34,7 +36,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 #Generating the Components
-In this app, a major module is a artis module. It will include artist-list sub component and artist-create sub component.
+In this app, a major module is a artist module. It will include artist-list sub component and artist-create sub component.
 
 * artist-list sub component – use for list users.
 * artist-create sub component – use for artist creating and editing form.
