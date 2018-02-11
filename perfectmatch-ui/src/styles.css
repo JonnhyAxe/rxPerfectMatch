@@ -23,6 +23,7 @@ body, .form-control {
 
 .generic-container {
   width:80%;
+  margin: 0 0 2em 0;
   margin-left: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -33,9 +34,38 @@ body, .form-control {
   box-shadow: 0 0 30px black;
 }
 
+.generic-container tr {
+  position: relative;
+  cursor: pointer;
+  background-color: #EEE;
+  margin: .5em;
+  padding: .3em 0;
+  height: 1.6em;
+  border-radius: 4px;
+}
+
+.generic-container tr:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}
+
+.generic-container a {
+  color: #888;
+  text-decoration: none;
+  position: relative;
+  display: block;
+  width: 250px;
+}
+
+.generic-container a:hover {
+  color:#607D8B;
+}
+
 .custom-width {
     width: 80px !important;
 }
+
 button {
   font-family: Arial;
   background-color: #eee;
@@ -45,9 +75,11 @@ button {
   cursor: pointer;
   cursor: hand;
 }
+
 button:hover {
   background-color: #cfd8dc;
 }
+
 button:disabled {
   background-color: #eee;
   color: #aaa;
