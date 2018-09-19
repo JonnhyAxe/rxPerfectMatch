@@ -26,6 +26,11 @@ npm test
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
+Swagger Generator
+https://github.com/JonnhyAxe/perfectmatch
+https://api-platform.com/docs/client-generator/vuejs/
+
+Reactive Javascript 
 https://www.vuemastery.com/courses/advanced-components/build-a-reactivity-system/
 
 google it : vue rxjs example
