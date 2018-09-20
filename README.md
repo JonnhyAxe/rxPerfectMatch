@@ -29,28 +29,28 @@ Add node path (`C:\dev\tools\node`) to the PATH env variable.
 
  * Open an command line and test the NPM (Node Package Manager) installation with `"npm --version"`. The version 5.6.0 should be displayed
 
-Ensure the Natixis proxy is configured and your user and password is defined for authentication purposes. 
+Ensure the proxy is configured and your user and password is defined for authentication purposes. 
 * Either by adding the proxy in the maven (https://www.mkyong.com/maven/how-to-enable-proxy-setting-in-maven/). This can cause some maven dependencies issues if the nonProxyHosts are not properly defined.
 
 ```
 <proxies>
   <proxy>
-      <id>http_natixis</id>
+      <id>id</id>
       <active>true</active>
       <protocol>http</protocol>
       <username>proxyuser</username>
       <password>proxypwd</password>
-      <host>proxyusers.intranatixis.com</host>
+      <host>domain</host>
       <port>8080</port>
       <nonProxyHosts></nonProxyHosts>
     </proxy>
 	<proxy>
-      <id>https_natixis</id>
+      <id>domain</id>
       <active>true</active>
       <protocol>https</protocol>
       <username>proxyuser</username>
       <password>proxypwd</password>
-      <host>proxyusers.intranatixis.com</host>
+      <host>domain</host>
       <port>8080</port>
       <nonProxyHosts>s</nonProxyHosts>
     </proxy>
@@ -83,7 +83,7 @@ Execute the following commands in order to build all projects:
 > mvn clean install
 > mvn --projects backend spring-boot:run 
 ```
-Alternatively execute the java class `com.natixis.etrading.fxhub.admin.mhubweb.Application` in the backend project.
+Alternatively execute the java class `<path_to_app>.Application` in the backend project.
 
 Now go to http://localhost:8081/ and the app should load.
 
