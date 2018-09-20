@@ -4,18 +4,12 @@
 This file requires a Markdown plugin or Visual Studio Code.
 Open the file in the Visual Studio and click on the `Open Preview on the side` button, located in the top right side of the file. 
 
-Alternatively, you can use the following url and use the browser.
-https://bitbucket.eqsmut.intranatixis.com/projects/EAGTETRAFX/repos/av9--fx-hub/browse/com.natixis.etrading.fxhub.mhub.nextgen?at=mHub_nextgen 
-
 ## Project setup
 ---
 
 Import the project in the in eclipse (for development java purposes) and Visual studio (for Vue development).
-Path: C:\dev\git\av9--fx-hub\com.natixis.etrading.fxhub.mhub.nextgen\vue
-Make usre you are in the 'origin/mhub-nextGen'
 
 ```
-com.natixis.etrading.fxhub.mhub.nextgen
 ├─┬ backend     → backend module with Java/Spring Boot code
 │ ├── src
 │ └── pom.xml   →    
@@ -27,7 +21,7 @@ com.natixis.etrading.fxhub.mhub.nextgen
 
 ## First App run
 ---
-Copy NodeJs from `"\\\cib.net\ShareParis\Salle\Services\Cmia\Tibco\ProjetForex\NodeJs`` to "C:\dev\tools\"`, as defined in the `<installDirectory>` xml element in the `"av9--fx-hub\com.natixis.etrading.fxhub.mhub.nextgen\vue\pom.xml"`.
+Copy NodeJs from `"\\\...\NodeJs`` to "C:\dev\tools\"`, as defined in the `<installDirectory>` xml element in the `"...\vue\pom.xml"`.
 
 Add node path (`C:\dev\tools\node`) to the PATH env variable.
 
@@ -48,7 +42,7 @@ Ensure the Natixis proxy is configured and your user and password is defined for
       <password>proxypwd</password>
       <host>proxyusers.intranatixis.com</host>
       <port>8080</port>
-      <nonProxyHosts>srvsvn-etrading.smt.cib.net|srvsvn-fxalgo.smt.cib.net|srvsvn-etrading</nonProxyHosts>
+      <nonProxyHosts></nonProxyHosts>
     </proxy>
 	<proxy>
       <id>https_natixis</id>
@@ -58,39 +52,34 @@ Ensure the Natixis proxy is configured and your user and password is defined for
       <password>proxypwd</password>
       <host>proxyusers.intranatixis.com</host>
       <port>8080</port>
-      <nonProxyHosts>srvsvn-etrading.smt.cib.net|srvsvn-fxalgo.smt.cib.net|srvsvn-etrading</nonProxyHosts>
+      <nonProxyHosts>s</nonProxyHosts>
     </proxy>
   </proxies>
 ```
 
-* (optional) Alternatively go to `"av9--fx-hub\com.natixis.etrading.fxhub.mhub.nextgen\vue\pom.xml"` and add the the following line with a proper user and password to the configuration xml element of the execution phase with the `npm install` as the id:  
+* (optional) Alternatively go to `".....\vue\pom.xml"` and add the the following line with a proper user and password to the configuration xml element of the execution phase with the `npm install` as the id:  
 ```
 
 <arguments>
-install -l --proxy=http://<USER>:<PASS>@proxyusers.intranatixis.com:8080  --https-proxy=http://<USER>:<PASS>@proxyusers.intranatixis.com:8080
+install -l --proxy=http://<USER>:<PASS>@purl:8080  --https-proxy=http://<USER>:<PASS>@url:8080
 </arguments>
 ```
 
 * (optional) All javascript dependencies can be resolved manually with the following commands
 ```
-cd C:\<PATH_TO_GIT>\av9--fx-hub\com.natixis.etrading.fxhub.mhub.nextgen\vue
-npm install -l --proxy=http://<USER>:<PASS>@proxyusers.intranatixis.com:8080  --https-proxy=http://<USER>:<PASS>@proxyusers.intranatixis.com:8080 
+cd C:\<PATH_TO_GIT>\a....\vue
+npm install -l --proxy=http://<USER>:<PASS>@purl:8080  --https-proxy=http://<USER>:<PASS>@url:8080
 ```
 
 
 
 Execute the following commands in order to build all projects:
 ```
-> cd `"C:\<PATH_TO_GIT>\av9--fx-hub"`
-> mvn clean install -Phub,master,conf
-> cd `"C:\<PATH_TO_GIT>\noiua-credit-check`"
-> mvn clean install -Pserver-release
-> cd C:\<PATH_TO_GIT>\av9--fx-hub\com.natixis.etrading.fxhub.mhub.nextgen\vue~
 > npm config set strict-ssl false
-> npm install -l --proxy=http://<USER>:<PASS>@proxyusers.intranatixis.com:8080  --https-proxy=http://<USER>:<PASS>@proxyusers.intranatixis.com:8080 
+> npm install -l ---proxy=http://<USER>:<PASS>@purl:8080  --https-proxy=http://<USER>:<PASS>@url:8080
 ```
 ```
-> cd  `"C:\<PATH_TO_GIT>\av9--fx-hub\com.natixis.etrading.fxhub.mhub.nextgen"`
+> cd  `"C:\<PATH_TO_GIT>\<parent project>"`
 > mvn clean install
 > mvn --projects backend spring-boot:run 
 ```
@@ -99,11 +88,11 @@ Alternatively execute the java class `com.natixis.etrading.fxhub.admin.mhubweb.A
 Now go to http://localhost:8081/ and the app should load.
 
 All javascrip (under the folder node_mdules) and java dependencies are resolved and no additional steps is required. 
-You can refer to the file `"C:\<PATH_TO_GIT>\av9--fx-hubav9--fx-hub\com.natixis.etrading.fxhub.mhub.nextgen\vue\README.md"`, to just resolve Javascript dependencies.
+You can refer to the file `"C:\<PATH_TO_GIT>\...\vue\README.md"`, to just resolve Javascript dependencies.
 
 ## Fast feedback with webpack-dev-server
 ---
-The webpack-dev-server, which will update and build every change through all the parts of the JavaScript build-chain, is pre-configured in Vue.js out-of-the-box! So the only thing needed to get fast feedback development-cycle is to cd into `"C:\<PATH_TO_GIT>\av9--fx-hubav9--fx-hub\com.natixis.etrading.fxhub.mhub.nextgen\vue"` and run:
+The webpack-dev-server, which will update and build every change through all the parts of the JavaScript build-chain, is pre-configured in Vue.js out-of-the-box! So the only thing needed to get fast feedback development-cycle is to cd into `"C:\<PATH_TO_GIT>\.....\vue"` and run:
 
 ```
 npm run dev
@@ -143,7 +132,7 @@ Note that with CodeMix plugin you lose the Vue Syntax Highlighting, after the tr
 1. Install eclipse Java EE Photon Release (4.8.0) 
 
 2. Add proxy configuration: 
->Window - Preferences -> Network Connections -> Proxy Bypass -> add http://proxyusers.intranatixis.com:8080  
+>Window - Preferences -> Network Connections -> Proxy Bypass -> add http://domain:port  
 
 3. Install CodeMix plugin: 
 
@@ -163,7 +152,7 @@ As the workaround execute the following command line, with the proper user and p
 
 ```
 > npm config set strict-ssl false
-> npm install -l --proxy=http://<USER>:<PASS>@proxyusers.intranatixis.com:8080  --https-proxy=http://<USER>:<PASS>@proxyusers.intranatixis.com:8080 
+> npm install -l --proxy=http://<USER>:<PASS>@purl:8080  --https-proxy=http://<USER>:<PASS>@url:8080
 > cd ..
 > mvn clean install
 ```
@@ -174,14 +163,7 @@ As the workaround execute the following command line, with the proper user and p
 [INFO] Download already available at C:\Users\MACHAD~1\AppData\Local\Temp\phantomjs\phantomjs-2.1.1-windows.zip
 [INFO] Verified checksum of previously downloaded file
 [INFO] Extracting zip contents
-[INFO] Removing C:\dev\git\av9--fx-hub\com.natixis.etrading.fxhub.mhub.nextgen\vue\node_modules\phantomjs-prebuilt\lib\phantom
-[INFO] Copying extracted folder C:\Users\MACHAD~1\AppData\Local\Temp\phantomjs\phantomjs-2.1.1-windows.zip-extract-1536677361715\phantomjs-2.1.1-windows -> C:\dev\git\av9--fx-hub\com.natixis.etrading.fxhub.mhub.nextgen\vue\node_modules\phantomjs-prebuilt\lib\phantom
-[INFO] Writing location.js file
-[INFO] Done. Phantomjs binary available at C:\dev\git\av9--fx-hub\com.natixis.etrading.fxhub.mhub.nextgen\vue\node_modules\phantomjs-prebuilt\lib\phantom\bin\phantomjs.exe
-[INFO]
-[INFO] > chromedriver@2.41.0 install C:\dev\git\av9--fx-hub\com.natixis.etrading.fxhub.mhub.nextgen\vue\node_modules\chromedriver
-[INFO] > node install.js
-[INFO]
+....
 [INFO] Downloading https://chromedriver.storage.googleapis.com/2.41/chromedriver_win32.zip
 [INFO] Saving to C:\Users\MACHAD~1\AppData\Local\Temp\chromedriver\chromedriver_win32.zip
 [ERROR] ChromeDriver installation failed Error with http(s) request: Error: tunneling socket could not be established, statusCode=407
@@ -213,7 +195,6 @@ As the workaround execute the following command line, with the proper user and p
 [INFO] Finished at: 2018-09-11T16:49:28+02:00
 [INFO] Final Memory: 20M/243M
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal com.github.eirslett:frontend-maven-plugin:1.6:npm (npm install) on project fxhub.mhubweb.nextgen.vue: Failed to run task: 'npm install --https-proxy=http://proxyuser:***@proxyusers.intranatixis.com:8080 --proxy=http://proxyuser:***@proxyusers.intranatixis.com:8080' failed. org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1) -> [Help 1]
 [ERROR]
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
 [ERROR] Re-run Maven using the -X switch to enable full debug logging.
@@ -232,7 +213,6 @@ https://maven.apache.org/guides/mini/guide-proxies.html
 https://maven.apache.org/guides/mini/guide-encryption.html
 
 [INFO] Writing location.js file
-[INFO] Done. Phantomjs binary available at C:\dev\git\av9--fx-hub\com.natixis.etrading.fxhub.mhub.nextgen\vue\node_modules\phantomjs-prebuilt\lib\phantom\bin\phantomjs.exe
 [INFO]
 [INFO] > chromedriver@2.41.0 install C:\dev\git\av9--fx-hub\com.natixis.etrading.fxhub.mhub.nextgen\vue\node_modules\chromedriver
 [INFO] > node install.js
