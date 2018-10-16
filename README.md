@@ -1,7 +1,7 @@
 # rxPerfectMatch
 
 
-This file requires a Markdown plugin or Visual Studio Code.
+This file requires a Markdown plugin or Visual Studio Code (or any Vue compatible IDE).
 Open the file in the Visual Studio and click on the `Open Preview on the side` button, located in the top right side of the file. 
 
 ## Project setup
@@ -98,7 +98,7 @@ The webpack-dev-server, which will update and build every change through all the
 npm run dev
 ```
 
-Thats it, the root page should be automatically open! Every change in the Vue.js files are automatically updated, if not just refresh the page. You should confirm the change in the Chrome dev tools: 
+That's it, the root page should be automatically open! Every change in the Vue.js files are automatically updated, if not just refresh the page. You should confirm the change in the Chrome dev tools: 
 
 * Ctrl + Shift + l
 * Click on the Sources tab
@@ -143,7 +143,7 @@ Help -> Install New Software -> http://www.genuitec.com/updates/codemix/ci/
 Window -> Preferences -> Javascript -> Tern -> Server -> Node.js -> "Node.js install" select "-- Choose your node.js install --" -> C:\dev\tools\node
  
 
-## Maven NPM install with proxy mave settings (TODO)
+## Maven NPM install with proxy maven settings (TODO)
 
 ---
 
@@ -204,23 +204,6 @@ As the workaround execute the following command line, with the proper user and p
 [ERROR]
 [ERROR] After correcting the problems, you can resume the build with the command
 [ERROR]   mvn <goals> -rf :fxhub.mhubweb.nextgen.vue
-
-## Maven Encrypt issue (TODO)
----
-The following two resources are used to configure the Natixis proxy (to resolve javascript dependencies), and to encrypt the user password, but the following error happens  
-
-https://maven.apache.org/guides/mini/guide-proxies.html
-https://maven.apache.org/guides/mini/guide-encryption.html
-
-[INFO] Writing location.js file
-[INFO]
-[INFO] > chromedriver@2.41.0 install C:\dev\git\av9--fx-hub\com.natixis.etrading.fxhub.mhub.nextgen\vue\node_modules\chromedriver
-[INFO] > node install.js
-[INFO]
-[INFO] Downloading https://chromedriver.storage.googleapis.com/2.41/chromedriver_win32.zip
-[INFO] Saving to C:\Users\MACHAD~1\AppData\Local\Temp\chromedriver\chromedriver_win32.zip
-[ERROR] ChromeDriver installation failed Error with http(s) request: Error: tunneling socket could not be established, statusCode=407
-
 
 
 
